@@ -1,20 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { View, } from 'react-native';
+import { TaskAddButton } from './src/components/atoms/TaskAddButton';
+import { MemoDetailScreen } from './src/screens/MemoDetailScreen';
+import { MemoListScreens } from './src/screens/MemoListScreens';
+import tw from 'tailwind-rn'
+import { MemoEditScreen } from './src/screens/MemoEditScreen';
+import { MemoCreateScreen } from './src/screens/MemoCreateScreen';
+import { KeyboardSafeView } from './src/components/KeyboardSafeView';
+import { LoginScreen } from './src/screens/LoginScreen';
+import { SignUpScreen } from './src/screens/SignupScreen';
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <KeyboardSafeView style={tw('relative h-full')}>
+      {/* <MemoListScreens /> */}
+      {/* <MemoDetailScreen /> */}
+      <MemoEditScreen />
+      {/* <MemoCreateScreen /> */}
+      {/* <LoginScreen /> */}
+      {/* <SignUpScreen /> */}
+    </KeyboardSafeView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
