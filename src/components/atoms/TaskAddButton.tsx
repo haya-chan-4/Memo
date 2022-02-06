@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons';
 
 type ButtonIcon = {
   iconName: 'plus'| 'edit-2'| 'check'| 'x',
-  onPress: func,
+  onPress: () => void
 }
 
 

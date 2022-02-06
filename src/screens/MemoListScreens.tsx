@@ -1,18 +1,19 @@
 import { View, Text } from 'react-native';
 import React from 'react';
-import { AppBar } from '../components/AppBar';
+
 import { MemoList } from '../components/MemoList';
 import { TaskAddButton } from '../components/atoms/TaskAddButton';
 import tw from 'tailwind-rn'
 
 
 
-export const MemoListScreens = () => {
+export const MemoListScreens = (props: { navigation: any; }) => {
+  const { navigation } = props;
   return (
     <View style={tw('flex-auto h-full')}>
-      <TaskAddButton iconName='plus' />
+      <TaskAddButton onPress={() => {navigation.navigate('MemoCreate');}} iconName='plus' />
       <View>
-        <AppBar />
+
         <MemoList />
       </View>
     </View>
