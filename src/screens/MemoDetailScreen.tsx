@@ -7,10 +7,14 @@ import tw from 'tailwind-rn'
 import { TaskAddButton } from '../components/atoms/TaskAddButton';
 
 export const MemoDetailScreen = (props: { navigation: any; }) => {
-  const {navigation} = props;
+  const { navigation } = props;
   return (
     <View style={tw('flex-auto h-full')}>
-      <TaskAddButton onPress={() => {navigation.navigate('MemoEdit')}} iconName='edit-2' />
+      <TaskAddButton
+        onPress={() => {
+          navigation.navigate('MemoEdit')
+        }}
+        iconName='edit-2' />
 
       <MemoListItem
         title="Memo"
@@ -19,9 +23,8 @@ export const MemoDetailScreen = (props: { navigation: any; }) => {
         textColor="white"
         deleteButton='hidden'
         fontWeight="bold"
-
-        onPress={() => { } }
-        />
+        onPress={() => { }}
+      />
       <DetailScreenTextArea />
     </View>
   );

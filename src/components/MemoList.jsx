@@ -16,7 +16,6 @@ export const MemoList = () => {
         bgColor="gray"
         darkness={50}
         textColor="black"
-
         fontWeight='normal'  />
     </View>
   );
