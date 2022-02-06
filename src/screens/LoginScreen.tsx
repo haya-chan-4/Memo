@@ -1,5 +1,5 @@
 import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect, } from 'react';
 import firebase from 'firebase'
 
 import tw from 'tailwind-rn'
@@ -10,6 +10,27 @@ export const LoginScreen = (props: { navigation: any }) => {
   const { navigation } = props;
   const [email, setEmail] = useState('Email Address');
   const [password, setPassword] = useState('Password');
+
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user: any) => {
+      if (user) {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'MemoList' }],
+        });
+      }
+    });
+    return unsubscribe;
+  }, []);
+// useEffectの第二引数は自動レンダリングを防ぐため
+
+  useEffect(() => {
+      console.log('mount');
+      return () => {
+        console.log('unmount');
+      }
+  }, [])
+
   const handlePress = () => {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((userCredentials: any) => {

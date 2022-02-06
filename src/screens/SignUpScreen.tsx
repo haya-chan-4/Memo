@@ -57,7 +57,7 @@ export const SignUpScreen = (props: { navigation: any; }) => {
           <Text style={tw('text-sm  self-start leading-6')}>Already registered?</Text>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('login');
+              navigation.navigate('Login');
             }}>
             <Text style={tw('ml-2 text-sm  self-start leading-6 text-blue-500')}>Log in</Text>
           </TouchableOpacity>
