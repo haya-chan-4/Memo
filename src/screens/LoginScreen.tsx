@@ -24,12 +24,12 @@ export const LoginScreen = (props: { navigation: any }) => {
   }, []);
 // useEffectの第二引数は自動レンダリングを防ぐため
 
-  useEffect(() => {
-      console.log('mount');
-      return () => {
-        console.log('unmount');
-      }
-  }, [])
+  // useEffect(() => {
+  //     console.log('mount');
+  //     return () => {
+  //       console.log('unmount');
+  //     }
+  // }, [])
 
   const handlePress = () => {
     firebase.auth().signInWithEmailAndPassword(email, password)
@@ -54,16 +54,17 @@ export const LoginScreen = (props: { navigation: any }) => {
       <View style={tw('flex-auto h-full bg-blue-50 py-7 px-8 ')}>
         <Text style={tw('text-xl font-bold leading-8 mb-6')}>Log In</Text>
         <TextInput
-          onChangeText={(text: string) => { setEmail(text); }}
+          onChangeText={(text: any) => { setEmail(text); }}
           style={tw(
             'text-base text-gray-400 h-10 p-1 pb-2 px-4 bg-white border-gray-300 border rounded mb-4')}
           placeholder={email}
+
           autoCapitalize="none"
           keyboardType='email-address'
           textContentType='emailAddress'
         />
         <TextInput
-          onChangeText={(text: string) => {
+          onChangeText={(text: any) => {
             setPassword(text);
           }}
           style={tw(

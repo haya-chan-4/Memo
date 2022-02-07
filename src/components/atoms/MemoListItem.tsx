@@ -11,18 +11,21 @@ type ListStyle = {
   deleteButton: string,
   fontWeight: string,
   onPress: () => void,
-
+  memos: any,
+  item: any,
 }
 
 
 export const MemoListItem = (props: ListStyle) => {
-  const { title, bgColor, darkness, textColor, deleteButton, fontWeight, onPress } = props;
+  const { title, bgColor, darkness, textColor, deleteButton, fontWeight, onPress, memos, item } = props;
 
   return (
-    <TouchableOpacity onPress={onPress} style={tw(`flex-row justify-between items-center border-b border-gray-200 bg-${bgColor}-${darkness}`)}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={tw(`flex-row justify-between items-center border-b border-gray-200 bg-${bgColor}-${darkness}`)}>
       <View style={tw('p-4 ')}>
-        <Text style={tw(`text-base font-${fontWeight} mb-1 text-${textColor}`)}>{title}</Text>
-        <Text style={tw(`text-xs text-${textColor}`)}>2022-2-2 10:10</Text>
+        <Text numberOfLines={1} style={tw(`text-base font-${fontWeight} mb-1 text-${textColor}`)}>{item.bodyText}</Text>
+        <Text style={tw(`text-xs text-${textColor}`)}>{String(item.updateDate)}</Text>
       </View>
 
       <TouchableOpacity
