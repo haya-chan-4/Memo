@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import React from 'react';
 import tw from "tailwind-rn"
 import { Feather } from '@expo/vector-icons';
+import { dateToString } from '../../utils';
 
 type ListStyle = {
   title: string,
@@ -25,7 +26,7 @@ export const MemoListItem = (props: ListStyle) => {
       style={tw(`flex-row justify-between items-center border-b border-gray-200 bg-${bgColor}-${darkness}`)}>
       <View style={tw('p-4 ')}>
         <Text numberOfLines={1} style={tw(`text-base font-${fontWeight} mb-1 text-${textColor}`)}>{item.bodyText}</Text>
-        <Text style={tw(`text-xs text-${textColor}`)}>{String(item.updateDate)}</Text>
+        <Text style={tw(`text-xs text-${textColor}`)}>{dateToString(item.updateDate)}</Text>
       </View>
 
       <TouchableOpacity
