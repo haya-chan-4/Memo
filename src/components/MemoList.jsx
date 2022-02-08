@@ -22,7 +22,7 @@ export const MemoList = (props) => {
   const renderItem = ({ item }) => {
     return (
       <MemoListItem
-        onPress={() => { navigation.navigate('MemoDetail', {id: item.id}); }}
+        onPress={() => { navigation.navigate('MemoDetail', { id: item.id }); }}
         title="text"
         bgColor="gray"
         darkness={50}

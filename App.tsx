@@ -2,6 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 import firebase from 'firebase';
+import {LogBox} from 'react-native'
 
 
 
@@ -21,6 +22,7 @@ if (firebase.apps.length === 0) {
 }
 
 const Stack = createStackNavigator();
+LogBox.ignoreAllLogs
 
 
 export default function App() {

@@ -71,7 +71,7 @@ export const MemoDetailScreen = (props) => {
         iconName='edit-2' />
       <View
         style={tw(`flex-row justify-between items-center border-b border-gray-200 bg-blue-500`)}>
-        <View style={tw('p-4 ')}>
+        <View style={tw('p-4')}>
           <Text style={tw(`text-xl font-semibold mb-1 text-white`)}>{memo && memo.bodyText}</Text>
           <Text style={tw(`text-xs text-white`)}>{memo && dateToString(memo.updateDate)}</Text>
         </View>
