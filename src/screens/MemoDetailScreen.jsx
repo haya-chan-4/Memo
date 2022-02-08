@@ -1,6 +1,6 @@
 import { View, Text, Alert } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import {shape, string} from 'prop-types';
+import { shape, string } from 'prop-types';
 import { DetailScreenTextArea } from '../components/DetailScreenTextArea';
 import tw from 'tailwind-rn'
 import { TaskAddButton } from '../components/atoms/TaskAddButton';
@@ -14,25 +14,25 @@ import { dateToString } from '../utils';
 
 export const MemoDetailScreen = (props) => {
   const { navigation, route } = props;
-  const {id} = route.params;
+  const { id } = route.params;
   console.log(id);
   const [memo, setMemo] = useState(null)
 
   useEffect(() => {
     const { currentUser } = firebase.auth();
-    let unsubscribe = () => {};
-    if(currentUser) {
+    let unsubscribe = () => { };
+    if (currentUser) {
       const db = firebase.firestore();
-    const ref = db.collection(`users/${currentUser.uid}/memos`).doc(id);
-    unsubscribe = ref.onSnapshot((doc) => {
-      console.log(doc.id, doc.data());
-      const data = doc.data();
-      setMemo({
-        id: data.id,
-        bodyText: data.bodyText,
-        updateDate: data.updateDate.toDate(),
+      const ref = db.collection(`users/${currentUser.uid}/memos`).doc(id);
+      unsubscribe = ref.onSnapshot((doc) => {
+        console.log(doc.id, doc.data());
+        const data = doc.data();
+        setMemo({
+          id: doc.id,
+          bodyText: data.bodyText,
+          updateDate: data.updateDate.toDate(),
+        });
       });
-    });
     } return unsubscribe;
   }, []);
 
@@ -40,7 +40,10 @@ export const MemoDetailScreen = (props) => {
     <View style={tw('flex-auto h-full')}>
       <TaskAddButton
         onPress={() => {
-          navigation.navigate('MemoEdit')
+          navigation.navigate(
+            'MemoEdit',
+            { id: memo.id, bodyText: memo.bodyText },
+          )
         }}
         iconName='edit-2' />
       <View
