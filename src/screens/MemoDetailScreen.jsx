@@ -7,7 +7,30 @@ import { TaskAddButton } from '../components/atoms/TaskAddButton';
 import firebase from 'firebase';
 import { dateToString } from '../utils';
 
+// interface Props {
+//   navigation: {
+//     navigate: any,
+//   }
+//   route: {
+//     params: {
+//       id: string
+//     }
+//   }
+// }
 
+// interface Auth {
+//   currentUser: {
+//     uid: string,
+//   }
+// }
+
+// interface Data {
+//   bodyText: any | null;
+//   updateDate: any | null;
+//   doc: {
+//     id: any | null;
+//   },
+// }
 
 
 
@@ -16,7 +39,7 @@ export const MemoDetailScreen = (props) => {
   const { navigation, route } = props;
   const { id } = route.params;
   console.log(id);
-  const [memo, setMemo] = useState(null)
+  const [memo, setMemo] = useState(null);
 
   useEffect(() => {
     const { currentUser } = firebase.auth();
@@ -25,7 +48,7 @@ export const MemoDetailScreen = (props) => {
       const db = firebase.firestore();
       const ref = db.collection(`users/${currentUser.uid}/memos`).doc(id);
       unsubscribe = ref.onSnapshot((doc) => {
-        console.log(doc.id, doc.data());
+        // console.log(doc.id, doc.data());
         const data = doc.data();
         setMemo({
           id: doc.id,

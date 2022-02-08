@@ -5,11 +5,13 @@ import firebase from 'firebase'
 import tw from 'tailwind-rn'
 import { SubmitButton } from '../components/atoms/SubmitButton';
 import { InputForm } from '../components/atoms/InputForm';
+import { Loading } from '../components/atoms/Loading';
 
 export const LoginScreen = (props: { navigation: any }) => {
   const { navigation } = props;
   const [email, setEmail] = useState('Email Address');
   const [password, setPassword] = useState('Password');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user: any) => {
@@ -18,20 +20,16 @@ export const LoginScreen = (props: { navigation: any }) => {
           index: 0,
           routes: [{ name: 'MemoList' }],
         });
+      } else {
+        setIsLoading(false);
       }
     });
     return unsubscribe;
   }, []);
-// useEffectの第二引数は自動レンダリングを防ぐため
-
-  // useEffect(() => {
-  //     console.log('mount');
-  //     return () => {
-  //       console.log('unmount');
-  //     }
-  // }, [])
+  // useEffectの第二引数は自動レンダリングを防ぐため
 
   const handlePress = () => {
+    setIsLoading(true);
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((userCredentials: any) => {
         const { user } = userCredentials;
@@ -40,17 +38,19 @@ export const LoginScreen = (props: { navigation: any }) => {
           index: 0,
           routes: [{ name: 'MemoList' }],
         })
+
       })
       .catch((error: { code: any; message: any; }) => {
-        console.log(error.code, error.message);
         Alert.alert(error.code, error.message)
       })
-
+      .then(() => {
+        setIsLoading(false);
+      })
   }
 
   return (
     <View>
-
+      <Loading isLoading={isLoading} />
       <View style={tw('flex-auto h-full bg-blue-50 py-7 px-8 ')}>
         <Text style={tw('text-xl font-bold leading-8 mb-6')}>Log In</Text>
         <TextInput
